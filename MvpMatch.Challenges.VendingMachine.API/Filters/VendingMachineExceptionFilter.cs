@@ -1,4 +1,5 @@
-﻿using MvpMatch.Challenges.VendingMachine.API.Models;
+﻿using MvpMatch.Challenges.VendingMachine.API.Exceptions;
+using MvpMatch.Challenges.VendingMachine.API.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,16 @@ namespace MvpMatch.Challenges.VendingMachine.API.Filters
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             var statusCode = HttpStatusCode.InternalServerError;
-            if (actionExecutedContext.Exception is UnauthorizedAccessException)
-            {
+            if (actionExecutedContext.Exception is UnauthorizedException)
                 statusCode = HttpStatusCode.Unauthorized;
-            }
-
-            var errorResponse = new ErrorApiResponse(actionExecutedContext.Exception);
+            else if (actionExecutedContext.Exception is ForbiddenException)
+                statusCode = HttpStatusCode.Forbidden;
 
             var jsonFormatter = new JsonMediaTypeFormatter();
             jsonFormatter.SerializerSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
 
             var errorMessage = new HttpResponseMessage(statusCode);
-            errorMessage.Content = new ObjectContent(typeof(ErrorApiResponse), errorResponse, jsonFormatter, "application/json");
+            errorMessage.Content = new ObjectContent(typeof(string), actionExecutedContext.Exception?.Message, jsonFormatter, "application/json");
 
             throw new HttpResponseException(errorMessage);
         }

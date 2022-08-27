@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[ProductLog] (
-    [Id]        INT NOT NULL,
+    [Id]        INT NOT NULL IDENTITY,
     [ProductId] INT NOT NULL,
     [LogTypeId] INT NOT NULL,
     [UserId]    INT NOT NULL,

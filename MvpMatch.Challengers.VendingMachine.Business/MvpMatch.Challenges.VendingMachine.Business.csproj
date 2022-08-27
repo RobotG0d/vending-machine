@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MvpMatch.Challenges.VendingMachine.Data\MvpMatch.Challenges.VendingMachine.Data.csproj" />
+    <ProjectReference Include="..\MvpMatch.Challenges.VendingMachine.Entities\MvpMatch.Challenges.VendingMachine.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

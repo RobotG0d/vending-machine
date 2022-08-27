@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MvpMatch.Challenges.VendingMachine.Common\MvpMatch.Challenges.VendingMachine.Common.csproj" />
     <ProjectReference Include="..\MvpMatch.Challenges.VendingMachine.Entities\MvpMatch.Challenges.VendingMachine.Entities.csproj" />
   </ItemGroup>
 

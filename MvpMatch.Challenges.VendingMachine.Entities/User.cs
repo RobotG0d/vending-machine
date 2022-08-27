@@ -1,4 +1,6 @@
-﻿namespace MvpMatch.Challenges.VendingMachine.Entities
+﻿using Newtonsoft.Json;
+
+namespace MvpMatch.Challenges.VendingMachine.Entities
 {
     public class User
     {
@@ -8,8 +10,9 @@
 
         public string Username { get; set; }
 
+        [JsonIgnore]
         public string Password { get; set; }
 
-        public long Deposit { get; set; }
+        public int Deposit { get; set; }
     }
 }

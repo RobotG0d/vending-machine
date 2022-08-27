@@ -6,8 +6,8 @@ namespace MvpMatch.Challenges.VendingMachine.Entities
     {
         public int Id { get; set; }
 
-        public int UniqueId { get; set; }
+        public int UserId { get; set; }
 
-        public DateTimeOffset Timestamp { get; set; }
+        public Guid UniqueId { get; set; }
     }
 }

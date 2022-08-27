@@ -1,23 +1,26 @@
-﻿using System;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
+using System.Data.SqlClient;
+using MvpMatch.Challenges.VendingMachine.Common.Settings;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using Dapper;
-using Dapper.Contrib.Extensions;
-using System.Configuration;
 
 namespace MvpMatch.Challenges.VendingMachine.Data
 {
     public abstract class BaseRepository
     {
-        #region Protected Utils
+        static BaseRepository()
+        {
+            SqlMapperExtensions.TableNameMapper = (type) => type.Name;
+        }
 
         protected void Execute<T>(Action<SqlConnection> action)
         {
             try
             {
-                using (var connection = new SqlConnection(GetConnectionStringFromSettings()))
+                using (var connection = new SqlConnection(VendingMachineSettings.ConnectionString))
                 {
                     connection.Open();
                     action(connection);
@@ -33,7 +36,7 @@ namespace MvpMatch.Challenges.VendingMachine.Data
         {
             try
             {
-                using (var connection = new SqlConnection(GetConnectionStringFromSettings()))
+                using (var connection = new SqlConnection(VendingMachineSettings.ConnectionString))
                 {
                     connection.Open();
                     return func(connection);
@@ -49,7 +52,7 @@ namespace MvpMatch.Challenges.VendingMachine.Data
         {
             try
             {
-                using (var connection = new SqlConnection(GetConnectionStringFromSettings()))
+                using (var connection = new SqlConnection(VendingMachineSettings.ConnectionString))
                 {
                     connection.Open();
                     return func(connection) ?? Enumerable.Empty<T>();
@@ -92,20 +95,6 @@ namespace MvpMatch.Challenges.VendingMachine.Data
                 )
             );
         }
-
-        #endregion
-
-        #region Private Utils
-
-        private string GetConnectionStringFromSettings()
-        {
-            var connectionStringName = ConfigurationManager.AppSettings.Get("ConnectionStringName");
-            var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName];
-
-            return connectionString.ConnectionString;
-        }
-
-        #endregion
     }
 
     public abstract class BaseRepository<T> : BaseRepository
