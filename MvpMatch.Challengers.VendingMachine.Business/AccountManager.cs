@@ -35,6 +35,9 @@ namespace MvpMatch.Challenges.VendingMachine.Business
             return new UserRepository().Create(user);
         }
 
+        public void Delete(int userId)
+            => new UserRepository().Delete(userId);
+
         public User Get(int id)
             => new UserRepository().Get(id);
 

@@ -42,7 +42,9 @@ BEGIN
 
 		ROLLBACK TRAN
 
-		IF @totalCost > @existingMoney
+		IF @totalCost IS NULL 
+			THROW 50000, 'Requested product does not exist.', 0
+		ELSE IF @totalCost > @existingMoney
 			THROW 50000, 'User does not have enough money to fulfill the request.', 0
 		ELSE IF @existingAmount < @productAmount
 			THROW 50001, 'There aren''t enough products to satisfy the request.', 0

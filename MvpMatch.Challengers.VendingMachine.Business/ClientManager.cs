@@ -31,6 +31,12 @@ namespace MvpMatch.Challenges.VendingMachine.Business
 
         public ProductBuyResult Buy(int userId, int productId, int amount, out string error)
         {
+            if(amount <= 0)
+            {
+                error = "Amount must be a positive integer.";
+                return null;
+            }
+
             try
             {
                 error = null;

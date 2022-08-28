@@ -14,8 +14,11 @@ namespace MvpMatch.Challenges.VendingMachine.Business
             if (string.IsNullOrWhiteSpace(product.Name))
                 errors.Add("Product must have a name.");
 
-            if (product.Cost % 5 != 0)
-                errors.Add("Product's cost must be a multiple of 5.");
+            if (product.Cost <= 0 || product.Cost % 5 != 0)
+                errors.Add("Product's cost must be a positive multiple of 5.");
+
+            if (product.AmountAvailable <= 0)
+                errors.Add("Product's amount must be a positive integer.");
 
             return !errors.Any();
         }

@@ -13,7 +13,13 @@ namespace MvpMatch.Challenges.VendingMachine.API.Controllers
 {
     public abstract class BaseVendingMachineController : ApiController
     {
-        protected SessionToken SessionToken 
-            => SessionUtils.GetToken();
+        private SessionToken _sessionToken;
+        public SessionToken SessionToken
+        {
+            get => _sessionToken == null ? 
+                _sessionToken = SessionUtils.GetToken() 
+                : _sessionToken;
+            set => _sessionToken = value;
+        }
     }
 }

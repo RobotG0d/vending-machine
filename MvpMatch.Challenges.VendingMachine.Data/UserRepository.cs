@@ -9,6 +9,11 @@ namespace MvpMatch.Challenges.VendingMachine.Data
             => ExecuteText<User>("SELECT * FROM [dbo].[User] WHERE [Username] = @username", new { username })
                 .SingleOrDefault();
 
+        public new void Delete(int userId)
+            => ExecuteText<User>("DELETE FROM [dbo].[Product] WHERE [SellerId] = @userId; DELETE FROM [dbo].[User] WHERE [Id] = @userId", new { userId })
+                .SingleOrDefault();
+
+
         public new User Get(int userId)
             => ExecuteText<User>("SELECT * FROM [dbo].[User] WHERE [Id] = @userId", new { userId })
                 .SingleOrDefault();

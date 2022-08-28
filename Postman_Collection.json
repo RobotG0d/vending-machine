@@ -1,0 +1,1741 @@
+{
+	"info": {
+		"_postman_id": "83b889e3-434c-467b-bc83-813a677e5801",
+		"name": "MvpMatch.VendingMachine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23046647"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();\r",
+									"pm.environment.set(\"LastProduct\", data.Id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Chocolate Bar\",\r\n    \"cost\": 145,\r\n    \"amountAvailable\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/product",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Chocolate Bar\",\r\n    \"cost\": 100,\r\n    \"amountAvailable\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/product",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 18:50:34 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Id\": 9,\n    \"Name\": \"Chocolate Bar\",\n    \"Cost\": 100,\n    \"AmountAvailable\": 10\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"cost\": 101,\r\n    \"amountAvailable\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/product",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 18:50:47 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "71"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    \"Product must have a name.\",\n    \"Product's cost must be a multiple of 5.\"\n]"
+						},
+						{
+							"name": "403",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Chocolate Bar\",\r\n    \"cost\": 100,\r\n    \"amountAvailable\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/product",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 21:57:12 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "\"Only users with role 'Seller' can perform this action.\""
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cost\": 100,\r\n    \"amountAvailable\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/product/{{LastProduct}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"product",
+								"{{LastProduct}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cost\": 105,\r\n    \"amountAvailable\": 15\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/product/9",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 18:51:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Id\": 9,\n    \"Name\": \"Chocolate Bar\",\n    \"Cost\": 105,\n    \"AmountAvailable\": 15\n}"
+						},
+						{
+							"name": "403",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cost\": 100,\r\n    \"amountAvailable\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/product/{{LastProduct}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product",
+										"{{LastProduct}}"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 22:00:29 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								}
+							],
+							"cookie": [],
+							"body": "\"Only the product's owner is allowed to make changes.\""
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/product/{{LastProduct}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"product",
+								"{{LastProduct}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/product/9",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product",
+										"9"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 18:51:38 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "403",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/product/{{LastProduct}}",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product",
+										"{{LastProduct}}"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 22:00:13 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								}
+							],
+							"cookie": [],
+							"body": "\"Only the product's owner is allowed to remove the product.\""
+						}
+					]
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/product",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/product",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 18:51:46 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "127"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"Id\": 7,\n        \"Name\": \"Chocolate Bar\",\n        \"Cost\": 100,\n        \"AmountAvailable\": 10\n    },\n    {\n        \"Id\": 8,\n        \"Name\": \"Cold Coffee\",\n        \"Cost\": 100,\n        \"AmountAvailable\": 10\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrl}}/product/8",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"product",
+								"8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/product/8",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"product",
+										"8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 19:45:49 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Id\": 8,\n    \"Name\": \"Cold Coffee\",\n    \"Cost\": 100,\n    \"AmountAvailable\": 10\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"s2\",\r\n    \"password\": \"123\",\r\n    \"roleId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/user",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"b2\",\r\n    \"password\": \"123\",\r\n    \"roleId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/user",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 21:35:46 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Id\": 7,\n    \"RoleId\": 2,\n    \"Username\": \"b2\",\n    \"Deposit\": 0\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"s2\",\r\n    \"password\": \"123\",\r\n    \"roleId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/user",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 23:16:46 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    \"Username is already taken.\"\n]"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var accessToken = pm.response.headers.get('x-session-token');\r",
+									"\r",
+									"pm.environment.set(\"AccessToken\", accessToken);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"b\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/login",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"b\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/login",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "x-session-token",
+									"value": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAHkfElC+shEmz6IYAxqJOdwQAAAACAAAAAAAQZgAAAAEAACAAAABqUdM3bE8rw1X1us5vBhj2RpHgjlscP9dPBuzl3Cu9wwAAAAAOgAAAAAIAACAAAABPJYZsJbVe9oVkizAuNjXfcAnGSLsHLyi8TKmDRQ1On6AAAADF0DLZIUToTy7gINpnP4i+pgM2JmAnQ8d3khnZ60S6nkcRaEufQPXdkru7xFmQy7Z3ovVDmZofE5tQKZmCCQzyHN/zZrlAXmG3ceQUtbf/SSmo3LhUm+WOwN1cIdpLQw848R1rPGCyzumpkaIO98F29omraxIhX4zSSmDooJDcYFir9YcVTCRnyp8haqbxVZMImEJfew0dKMvRqvnpoXjYQAAAABDNqJIvDZro7q1vRzO7H1agwzaR90UJub+KKi5GkugHqtBaftx0WdfZ1i5/vYiSeFVGXWO4T/aZDYN7uyG/t4A="
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 21:30:58 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "\"There is already an active session using your account.\""
+						},
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"s\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/login",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "x-session-token",
+									"value": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAHkfElC+shEmz6IYAxqJOdwQAAAACAAAAAAAQZgAAAAEAACAAAAAvUbtA3z+EFAwtujAWFixudMU5EvE1kQnTHXJdaur9IAAAAAAOgAAAAAIAACAAAABK2T9LRkzPV8HpkGyRs9Mjs7qeWRAkzhju/IG6qu1H+6AAAAAkXjZS4szs01FK56d8Bmo2ea2JqGKlXwHQOZ42qxRNwZswpoTGKr6LLmOb8stPYJgnBQkVyeuo9VukzPnZ8m9Q+xo8pKF1dIQAA9BfrEldZAC44eBlUfbHlAINTAvntMi0f0+nFZMQ+qqomCrTF+wWw+h3B3hIiVT9UXp4B+yYrTT0TxmLtYUbGGf9GG0NpFXcQEbL7H4bhwdaediZvmsfQAAAAObPGLgi5t+HcbPVTdB40MR+SZZKEaToRU3KwyqtdwNHgCiLpDz/lPYYG6Wv8gi/CkSuYDdfKasiF/7NydBB9yw="
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 21:35:32 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/logout",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/logout",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 21:51:37 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/logout",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 21:52:06 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"ErrorMessage\": \"User must be authenticated to perform this action.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout Everywhere",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/logout/all",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"logout",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/logout/all",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"logout",
+										"all"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 21:51:51 GMT"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Deposit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"coin\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/deposit",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"deposit"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/deposit/20",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"deposit",
+										"20"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 22:54:27 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Balance\": 20\n}"
+						},
+						{
+							"name": "400",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/deposit/22",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"deposit",
+										"22"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 22:54:44 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    \"Invalid coin. Allowed coins are: 5; 10; 20; 50; 100; 200\"\n]"
+						}
+					]
+				},
+				{
+					"name": "Balance",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/balance",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"balance"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/balance",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"balance"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 22:54:54 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Balance\": 20\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/reset",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"reset"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BaseUrl}}/reset",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"reset"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Aug 2022 22:55:06 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "13"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    0,\n    0,\n    1,\n    0,\n    0,\n    0\n]"
+						}
+					]
+				},
+				{
+					"name": "Buy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-session-token",
+								"value": "{{AccessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": {{LastProduct}},\r\n    \"amount\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/buy",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"buy"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400 (No products)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": {{LastProduct}},\r\n    \"amount\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/buy",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"buy"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Aug 2022 02:34:18 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								}
+							],
+							"cookie": [],
+							"body": "\"There aren't enough products to satisfy the request.\""
+						},
+						{
+							"name": "400 (No money)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": {{LastProduct}},\r\n    \"amount\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/buy",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"buy"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Aug 2022 02:35:16 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								}
+							],
+							"cookie": [],
+							"body": "\"User does not have enough money to fulfill the request.\""
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-session-token",
+										"value": "{{AccessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": {{LastProduct}},\r\n    \"amount\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/buy",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"buy"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Server",
+									"value": "Microsoft-IIS/10.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Aug 2022 02:35:59 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "145"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Product\": {\n        \"Id\": 1,\n        \"SellerId\": 5,\n        \"Name\": \"Chocolate Bar\",\n        \"Cost\": 145,\n        \"AmountAvailable\": 0\n    },\n    \"ProductAmount\": 1,\n    \"TotalSpent\": 145,\n    \"Change\": [\n        1,\n        0,\n        0,\n        0,\n        0,\n        0\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

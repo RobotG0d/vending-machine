@@ -33,6 +33,18 @@ namespace MvpMatch.Challenges.VendingMachine.API.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, user);
         }
 
+        [HttpDelete]
+        [Route("user")]
+        public HttpResponseMessage Delete()
+        {
+            var userManager = new AccountManager();
+
+            userManager.Delete(SessionToken.UserId);
+
+            return Request.CreateResponse(HttpStatusCode.NoContent);
+        }
+
+
         [HttpPost]
         [Route("login")]
         public HttpResponseMessage Login(LoginRequest request)

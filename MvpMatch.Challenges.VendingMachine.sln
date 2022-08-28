@@ -17,11 +17,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvpMatch.Challenges.Vending
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MvpMatch.Challenges.VendingMachine.Database", "MvpMatch.Challenges.VendingMachine.Database\MvpMatch.Challenges.VendingMachine.Database.sqlproj", "{C83F5681-0059-4D66-ACB8-66CE84BF760C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvpMatch.Challenges.VendingMachine.Common", "MvpMatch.Challenges.VendingMachine.Common\MvpMatch.Challenges.VendingMachine.Common.csproj", "{9DFFA41A-CD2B-41EF-9316-EBE65C4FB2A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvpMatch.Challenges.VendingMachine.Common", "MvpMatch.Challenges.VendingMachine.Common\MvpMatch.Challenges.VendingMachine.Common.csproj", "{9DFFA41A-CD2B-41EF-9316-EBE65C4FB2A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Global", "0. Global", "{52A0B8CE-6C28-41B8-BD0D-25844A99A354}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvpMatch.Challenges.VendingMachine.Business", "MvpMatch.Challengers.VendingMachine.Business\MvpMatch.Challenges.VendingMachine.Business.csproj", "{EFB3EFCF-E89B-4446-8DA8-F3E6C74594E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvpMatch.Challenges.VendingMachine.Business", "MvpMatch.Challengers.VendingMachine.Business\MvpMatch.Challenges.VendingMachine.Business.csproj", "{EFB3EFCF-E89B-4446-8DA8-F3E6C74594E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Tests", "4. Tests", "{8EA5FBEF-F93C-4DC1-99C5-694312712C7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvpMatch.Challenges.VendingMachine.API.Test", "MvpMatch.Challenges.VendingMachine.API.Test\MvpMatch.Challenges.VendingMachine.API.Test.csproj", "{DFF754FC-30D0-4667-BC82-6757A0D45531}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Documents", "5. Documents", "{01CD9041-236E-4E7A-AD08-785E1D893719}"
+	ProjectSection(SolutionItems) = preProject
+		Notes.pdf = Notes.pdf
+		Postman_Collection.json = Postman_Collection.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +65,10 @@ Global
 		{EFB3EFCF-E89B-4446-8DA8-F3E6C74594E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFB3EFCF-E89B-4446-8DA8-F3E6C74594E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFB3EFCF-E89B-4446-8DA8-F3E6C74594E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFF754FC-30D0-4667-BC82-6757A0D45531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFF754FC-30D0-4667-BC82-6757A0D45531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFF754FC-30D0-4667-BC82-6757A0D45531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFF754FC-30D0-4667-BC82-6757A0D45531}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +80,7 @@ Global
 		{C83F5681-0059-4D66-ACB8-66CE84BF760C} = {78192546-2B94-4A3B-A49D-5C0504D3379D}
 		{9DFFA41A-CD2B-41EF-9316-EBE65C4FB2A5} = {52A0B8CE-6C28-41B8-BD0D-25844A99A354}
 		{EFB3EFCF-E89B-4446-8DA8-F3E6C74594E8} = {27CE1367-7B2D-4325-A0A7-2D63A3EB43DD}
+		{DFF754FC-30D0-4667-BC82-6757A0D45531} = {8EA5FBEF-F93C-4DC1-99C5-694312712C7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {172F6D7D-20B0-4C0F-A0BB-DAA9B623DA9B}
