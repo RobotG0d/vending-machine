@@ -21,7 +21,7 @@ namespace MvpMatch.Challenges.VendingMachine.API.Filters
             var userManager = new AccountManager();
             var session = userManager.GetSession(token.UserId, token.SessionId);
             if (session == null)
-                throw new UnauthorizedException(NoAuthenticationMessage);
+                throw new UnauthorizedException(NoAuthenticationMessage); 
         }
     }
 }

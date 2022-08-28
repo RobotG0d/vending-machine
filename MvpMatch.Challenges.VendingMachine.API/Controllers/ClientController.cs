@@ -16,14 +16,14 @@ namespace MvpMatch.Challenges.VendingMachine.API.Controllers
     public class ClientController : BaseVendingMachineController
     {
         [HttpPost]
-        [Route("deposit/{coin}")]
-        public HttpResponseMessage Deposit(int coin)
+        [Route("deposit")]
+        public HttpResponseMessage Deposit(DepositRequest input)
         {
             var clientManager = new ClientManager();
-            if (!clientManager.ValidateCoin(coin, out var errors))
+            if (!clientManager.ValidateCoin(input.Coin, out var errors))
                 return Request.CreateResponse(HttpStatusCode.BadRequest, errors);
 
-            var user = clientManager.AddCoin(SessionToken.UserId, coin);
+            var user = clientManager.AddCoin(SessionToken.UserId, input.Coin);
 
             var response = new BalanceResponse(){ Balance = user.Deposit };
 
@@ -31,7 +31,6 @@ namespace MvpMatch.Challenges.VendingMachine.API.Controllers
         }
 
         [HttpGet]
-        [SessionFilter]
         [Route("balance")]
         public HttpResponseMessage Balance()
         {
@@ -43,13 +42,26 @@ namespace MvpMatch.Challenges.VendingMachine.API.Controllers
         }
 
         [HttpPost]
-        [SessionFilter]
         [Route("reset")]
         public HttpResponseMessage Reset()
         {
             var coins = new ClientManager().ResetBalance(SessionToken.UserId);
 
             return Request.CreateResponse(HttpStatusCode.OK, coins);
+        }
+
+        [HttpPost]
+        [Route("buy")]
+        public HttpResponseMessage Buy(BuyRequest request)
+        {
+            var result = new ClientManager().Buy(SessionToken.UserId, request.ProductId, request.Amount, out var error);
+
+            if(!string.IsNullOrWhiteSpace(error))
+                return Request.CreateResponse(HttpStatusCode.BadRequest, error);
+
+            var responseData = new BuyResponse(result);
+
+            return Request.CreateResponse(HttpStatusCode.OK, responseData);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using MvpMatch.Challenges.VendingMachine.Data;
 using MvpMatch.Challenges.VendingMachine.Entities;
+using MvpMatch.Challenges.VendingMachine.Entities.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MvpMatch.Challenges.VendingMachine.Business
 {
@@ -29,6 +29,23 @@ namespace MvpMatch.Challenges.VendingMachine.Business
             return ReturnCoins(user.Deposit);
         }
 
+        public ProductBuyResult Buy(int userId, int productId, int amount, out string error)
+        {
+            try
+            {
+                error = null;
+
+                var result = new ProductRepository().Buy(userId, productId, amount);
+                result.Change = ReturnCoins(result.ChangeValue);
+
+                return result;
+            }
+            catch (ApplicationException ex)
+            {
+                error = ex.Message;
+                return null;
+            }
+        }
 
         #region Private Utils
 

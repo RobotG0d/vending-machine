@@ -135,7 +135,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Accounts\LoginRequest.cs" />
+    <Compile Include="Models\Clients\DepositRequest.cs" />
+    <Compile Include="Models\Clients\BuyRequest.cs" />
     <Compile Include="Models\Clients\BalanceResponse.cs" />
+    <Compile Include="Models\Clients\BuyResponse.cs" />
     <Compile Include="Models\SessionToken.cs" />
     <Compile Include="Models\Accounts\RegisterRequest.cs" />
     <Compile Include="Models\Products\ProductUpdateRequest.cs" />
