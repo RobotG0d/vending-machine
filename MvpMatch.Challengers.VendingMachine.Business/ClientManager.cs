@@ -9,7 +9,7 @@ namespace MvpMatch.Challenges.VendingMachine.Business
 {
     public class ClientManager
     {
-        public static int[] ValidCoins = new int[] { 200, 100, 50, 20, 10, 5 };
+        public static int[] ValidCoins = new int[] { 100, 50, 20, 10, 5 };
 
         public bool ValidateCoin(int coin, out List<string> errors)
         {
